@@ -1,0 +1,12 @@
+node_modules/
+.env
+.env.*
+!.env.example
+
+stockflow.db
+stockflow.db-shm
+stockflow.db-wal
+
+coverage/
+dist/
+*.log
