@@ -168,6 +168,43 @@ test('StockFlow inventory API workflow', async () => {
 
   assert.equal(insufficient.statusCode, 409)
   assert.equal(insufficient.json().available, 12)
+  
+// 8.1 ปฏิเสธจำนวนเบิกที่เป็นศูนย์
+const zeroQuantity = await app.inject({
+  method: 'POST',
+  url: `/items/${itemId}/movements`,
+  payload: {
+    movementType: 'OUT',
+    quantity: 0,
+    reason: 'Invalid quantity test',
+  },
+})
+
+assert.equal(zeroQuantity.statusCode, 400)
+
+// 8.2 ปฏิเสธ ID สินค้าที่ไม่มีอยู่จริง
+const missingItem = await app.inject({
+  method: 'POST',
+  url: '/items/999999/movements',
+  payload: {
+    movementType: 'IN',
+    quantity: 1,
+    reason: 'Missing item test',
+  },
+})
+
+assert.equal(missingItem.statusCode, 404)
+
+// 8.3 ปฏิเสธการแก้ไขสินค้าที่ไม่มีอยู่จริง
+const missingUpdate = await app.inject({
+  method: 'PATCH',
+  url: '/items/999999',
+  payload: {
+    name: 'Missing item',
+  },
+})
+
+assert.equal(missingUpdate.statusCode, 404)
 
   // 9. ตรวจสอบประวัติว่าไม่มีรายการที่ถูกปฏิเสธ
   const history = await app.inject({
