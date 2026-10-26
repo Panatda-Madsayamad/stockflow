@@ -1,3 +1,5 @@
+[![StockFlow CI](https://github.com/Panatda-Madsayamad/stockflow/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Panatda-Madsayamad/stockflow/actions/workflows/ci.yml)
+
 # StockFlow
 
 A lightweight inventory management REST API built with TypeScript, Fastify, SQLite, and Drizzle ORM.
