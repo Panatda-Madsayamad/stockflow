@@ -98,6 +98,29 @@ The API runs locally at `http://127.0.0.1:8000`.
 
 The API rejects stock issue requests when the available quantity is insufficient.
 
+## Testing
+
+Run the automated API workflow tests with:
+
+```bash
+npm test
+```
+
+The test suite verifies:
+
+- API health check
+- Item creation and duplicate SKU validation
+- Item search and update
+- Stock receiving and issuing
+- Rejection of stock issues when inventory is insufficient
+- Inventory quantity and movement history consistency
+
+Tests run against a separate temporary SQLite database to avoid modifying the development database.
+
+## Current Test Status
+
+- Automated inventory API workflow test: Passing
+- Test command: `npm test`
 ## Project Status
 
 The core inventory API has been implemented. Automated tests, Docker support, CI/CD, and additional improvements are planned.
