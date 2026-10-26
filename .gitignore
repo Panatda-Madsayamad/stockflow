@@ -7,6 +7,10 @@ stockflow.db
 stockflow.db-shm
 stockflow.db-wal
 
+stockflow-test.db
+stockflow-test.db-shm
+stockflow-test.db-wal
+
 coverage/
 dist/
 *.log

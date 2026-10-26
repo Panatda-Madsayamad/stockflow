@@ -3,7 +3,7 @@ import { desc, eq, like, or } from 'drizzle-orm'
 import { db } from './db/index.js'
 import { items, stockMovements } from './db/schema.js'
 
-const app = Fastify({
+export  const app = Fastify({
   logger: true,
 })
 
@@ -478,4 +478,6 @@ const start = async () => {
   
 }
 
-start()
+if (process.env.NODE_ENV !== 'test') {
+  start()
+}
